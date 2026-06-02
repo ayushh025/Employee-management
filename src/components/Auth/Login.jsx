@@ -7,6 +7,7 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     const newErr = {};
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -63,6 +64,7 @@ const Login = () => {
             <span className="text-red-500 text-md mt-1">{errors.password}</span>
           )}
           <button
+            type="submit"
             className="bg-emerald-600 rounded-full py-3 px-5 text-xl text-white outline-none mt-6 border-none w-1/2"
             placeholder="Enter password"
           >
