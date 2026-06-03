@@ -18,9 +18,7 @@ const TaskListNumbers = () => {
         <div className="py-4 px-5 sm:py-4 sm:px-7 rounded-xl w-[48%] sm:min-w-[23%] bg-red-600">
             <h2 className='text-3xl font-bold'>0</h2>
             <h3 className='text-2xl font-medium'>Failed</h3>
-        </div>
-       
-      
+        </div> 
     </div>
   )
 }
