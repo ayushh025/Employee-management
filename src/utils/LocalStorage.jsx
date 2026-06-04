@@ -1,10 +1,15 @@
-import React from "react";
-
 const employees = [
   {
     id: 1,
+    name: "Ayush",
     email: "employee1@example.com",
     password: "123456",
+    taskNumbers: {
+      active: 2,
+      newTask: 1,
+      completed: 1,
+      failed: 0,
+    },
     tasks: [
       {
         active: true,
@@ -41,8 +46,15 @@ const employees = [
 
   {
     id: 2,
+    name: "Dhaval",
     email: "employee2@example.com",
     password: "123456",
+    taskNumbers: {
+      active: 2,
+      newTask: 1,
+      completed: 2,
+      failed: 1,
+    },
     tasks: [
       {
         active: true,
@@ -99,8 +111,15 @@ const employees = [
 
   {
     id: 3,
+    name: "Jay",
     email: "employee3@example.com",
     password: "123456",
+    taskNumbers: {
+      active: 3,
+      newTask: 1,
+      completed: 3,
+      failed: 1,
+    },
     tasks: [
       {
         active: true,
@@ -177,8 +196,15 @@ const employees = [
 
   {
     id: 4,
+    name: "Dhruv",
     email: "employee4@example.com",
     password: "123456",
+    taskNumbers: {
+      active: 3,
+      newTask: 1,
+      completed: 5,
+      failed: 1,
+    },
     tasks: [
       {
         active: true,
@@ -275,8 +301,15 @@ const employees = [
 
   {
     id: 5,
+    name: "Darsh",
     email: "employee5@example.com",
     password: "123456",
+    taskNumbers: {
+      active: 4,
+      newTask: 1,
+      completed: 5,
+      failed: 1,
+    },
     tasks: [
       {
         active: true,
@@ -385,6 +418,7 @@ const employees = [
 const admin = [
   {
     id: 1,
+    name: "Krutarth",
     email: "admin@example.com",
     password: "123456",
   },
@@ -398,7 +432,5 @@ export const setLocalStorage = () => {
 export const getLocalStorage = () => {
   const employessData = JSON.parse(localStorage.getItem("employees"));
   const adminData = JSON.parse(localStorage.getItem("admin"));
-
-  console.log(employessData);
-  console.log(adminData);
+  return { employessData, adminData };
 };
