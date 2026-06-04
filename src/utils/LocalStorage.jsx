@@ -4,7 +4,7 @@ const employees = [
   {
     id: 1,
     email: "employee1@example.com",
-    password: "123",
+    password: "123456",
     tasks: [
       {
         active: true,
@@ -42,7 +42,7 @@ const employees = [
   {
     id: 2,
     email: "employee2@example.com",
-    password: "123",
+    password: "123456",
     tasks: [
       {
         active: true,
@@ -100,7 +100,7 @@ const employees = [
   {
     id: 3,
     email: "employee3@example.com",
-    password: "123",
+    password: "123456",
     tasks: [
       {
         active: true,
@@ -178,7 +178,7 @@ const employees = [
   {
     id: 4,
     email: "employee4@example.com",
-    password: "123",
+    password: "123456",
     tasks: [
       {
         active: true,
@@ -276,7 +276,7 @@ const employees = [
   {
     id: 5,
     email: "employee5@example.com",
-    password: "123",
+    password: "123456",
     tasks: [
       {
         active: true,
@@ -382,11 +382,23 @@ const employees = [
   },
 ];
 
-const admin = {
-  id: 1,
-  email: "admin@example.com",
-  password: "123",
+const admin = [
+  {
+    id: 1,
+    email: "admin@example.com",
+    password: "123456",
+  },
+];
+
+export const setLocalStorage = () => {
+  localStorage.setItem("employees", JSON.stringify(employees));
+  localStorage.setItem("admin", JSON.stringify(admin));
 };
 
-export const setLocalStorage = () => {};
-export const getLocalStorage = () => {};
+export const getLocalStorage = () => {
+  const employessData = JSON.parse(localStorage.getItem("employees"));
+  const adminData = JSON.parse(localStorage.getItem("admin"));
+
+  console.log(employessData);
+  console.log(adminData);
+};
