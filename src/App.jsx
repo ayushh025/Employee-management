@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Login from "./components/Auth/Login";
 import EmployeeDashboard from "./components/Dashboard/EmployeeDashboard";
 import AdminDashboard from "./components/Dashboard/AdminDashboard";
@@ -8,19 +8,28 @@ import { setLocalStorage } from "./utils/LocalStorage";
 const App = () => {
   const [user, setUser] = useState(null);
   const [loggedInUserData, setLoggedInUserData] = useState(null);
+  const [loading, setLoading] = useState(true);
   const authData = useContext(AuthContext);
 
   useEffect(() => {
     setLocalStorage();
   }, []);
-  // useEffect(() => {
-  //   if (authData) {
-  //     const loggedInUser = localStorage.getItem("loggedInUser");
-  //     if (loggedInUser) {
-  //       setUser(loggedInUser.role);
-  //     }
-  //   }
-  // }, [authData]);
+
+  useEffect(() => {
+    const loggedInUser = localStorage.getItem("loggedInUser");
+
+    if (loggedInUser) {
+      const userData = JSON.parse(loggedInUser);
+      setUser({ role: userData.role });
+
+      if (userData.role === "Admin") {
+        setLoggedInUserData({ admin: userData.data });
+      } else {
+        setLoggedInUserData({ employee: userData.data });
+      }
+    }
+    setLoading(false);
+  }, []);
 
   const handleLogin = (email, password) => {
     if (authData) {
@@ -32,13 +41,16 @@ const App = () => {
       );
       if (admin) {
         setUser({ role: "Admin" });
-        localStorage.setItem("loggedInUser", JSON.stringify({ role: "Admin" }));
+        localStorage.setItem(
+          "loggedInUser",
+          JSON.stringify({ role: "Admin", data: admin })
+        );
         setLoggedInUserData({ admin });
       } else if (employee) {
         setUser({ role: "Employee" });
         localStorage.setItem(
           "loggedInUser",
-          JSON.stringify({ role: "Employee" })
+          JSON.stringify({ role: "Employee", data: employee })
         );
         setLoggedInUserData({ employee });
       } else {
@@ -46,6 +58,13 @@ const App = () => {
       }
     }
   };
+  if (loading) {
+    return (
+      <div className="h-screen flex items-center justify-center bg-[#111] text-white">
+        Loading...
+      </div>
+    );
+  }
   return (
     <>
       {!user ? <Login handleLogin={handleLogin} /> : ""}
