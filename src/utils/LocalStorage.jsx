@@ -12,8 +12,18 @@ const employees = [
     },
     tasks: [
       {
-        active: true,
+        active: false,
         newTask: true,
+        completed: false,
+        failed: false,
+        taskTitle: "Create Product Page",
+        taskDescription: "Build responsive product page.",
+        taskDate: "2026-06-05",
+        category: "Frontend",
+      },
+      {
+        active: true,
+        newTask: false,
         completed: false,
         failed: false,
         taskTitle: "Create Login Page",
