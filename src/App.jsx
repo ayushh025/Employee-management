@@ -34,23 +34,23 @@ const App = () => {
   const handleLogin = (email, password) => {
     if (authData) {
       const admin = authData.adminData.find(
-        (e) => e.email === email && e.password === password
+        (e) => e.email === email && e.password === password,
       );
       const employee = authData.employessData.find(
-        (e) => e.email === email && e.password === password
+        (e) => e.email === email && e.password === password,
       );
       if (admin) {
         setUser({ role: "Admin" });
         localStorage.setItem(
           "loggedInUser",
-          JSON.stringify({ role: "Admin", data: admin })
+          JSON.stringify({ role: "Admin", data: admin }),
         );
         setLoggedInUserData({ admin });
       } else if (employee) {
         setUser({ role: "Employee" });
         localStorage.setItem(
           "loggedInUser",
-          JSON.stringify({ role: "Employee", data: employee })
+          JSON.stringify({ role: "Employee", data: employee }),
         );
         setLoggedInUserData({ employee });
       } else {
@@ -69,12 +69,15 @@ const App = () => {
     <>
       {!user ? <Login handleLogin={handleLogin} /> : ""}
       {user?.role === "Admin" ? (
-        <AdminDashboard admin={loggedInUserData?.admin} />
+        <AdminDashboard admin={loggedInUserData?.admin} setUser={setUser} />
       ) : (
         ""
       )}
       {user?.role === "Employee" ? (
-        <EmployeeDashboard employee={loggedInUserData?.employee} />
+        <EmployeeDashboard
+          employee={loggedInUserData?.employee}
+          setUser={setUser}
+        />
       ) : (
         ""
       )}
