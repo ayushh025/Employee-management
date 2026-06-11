@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { AuthContext } from "../../context/AuthProvider";
 
 const AllTask = () => {
-  const userData = useContext(AuthContext);
+  const [userData] = useContext(AuthContext);
 
   return (
     <div className="bg-[#2A2A2A] p-4 rounded-b-xl">
@@ -21,12 +21,18 @@ const AllTask = () => {
             {/* Desktop / Tablet */}
             <div className="hidden md:flex mb-2 py-3 px-4 bg-[#1C1C1C] rounded-lg">
               <p className="w-1/5 text-white">{emp.name}</p>
-              <p className="w-1/5 text-blue-400 ml-2">{emp.taskNumbers.newTask}</p>
-              <p className="w-1/5 text-yellow-400 ml-2">{emp.taskNumbers.active}</p>
+              <p className="w-1/5 text-blue-400 ml-2">
+                {emp.taskNumbers.newTask}
+              </p>
+              <p className="w-1/5 text-yellow-400 ml-2">
+                {emp.taskNumbers.active}
+              </p>
               <p className="w-1/5 text-green-500 ml-2">
                 {emp.taskNumbers.completed}
               </p>
-              <p className="w-1/5 text-red-500 ml-2">{emp.taskNumbers.failed}</p>
+              <p className="w-1/5 text-red-500 ml-2">
+                {emp.taskNumbers.failed}
+              </p>
             </div>
 
             {/* Mobile */}

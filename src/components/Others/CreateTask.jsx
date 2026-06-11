@@ -8,13 +8,11 @@ const CreateTask = () => {
   const [assignTo, setAssignTo] = useState("");
   const [category, setCategory] = useState("");
 
-  const [task, setTask] = useState({});
-
-  const userData = useContext(AuthContext);
+  const [userData, setUserData] = useContext(AuthContext);
 
   const submitHandler = (e) => {
     e.preventDefault();
-    setTask({
+    const newTask = {
       taskTitle,
       taskDescription,
       taskDate,
@@ -23,20 +21,23 @@ const CreateTask = () => {
       completed: false,
       failed: false,
       newTask: true,
-    });
+    };
 
-    const employees = JSON.parse(localStorage.getItem("employees"));
-    console.log(employees);
+    const employees = [...userData.employessData];
 
     employees.forEach((emp) => {
       if (assignTo === emp.name) {
         emp.taskNumbers.newTask += 1;
-        emp.tasks.push(task);
-        // localStorage.setItem(employees);
-        // alert("Task assigned successfully");
-        // return;
+        emp.tasks.push(newTask);
       }
     });
+
+    localStorage.setItem("employees", JSON.stringify(employees));
+
+    setUserData((prev) => {
+      return { ...prev, employessData: employees };
+    });
+
     setAssignTo("");
     setCategory("");
     setTaskTitle("");
@@ -84,7 +85,7 @@ const CreateTask = () => {
                 Select Employee
               </option>
 
-              {userData.employessData.map((emp) => (
+              {userData?.employessData.map((emp) => (
                 <option
                   key={emp.id}
                   value={emp.name}

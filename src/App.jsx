@@ -9,7 +9,10 @@ const App = () => {
   const [user, setUser] = useState(null);
   const [loggedInUserData, setLoggedInUserData] = useState(null);
   const [loading, setLoading] = useState(true);
-  const authData = useContext(AuthContext);
+  const [userData] = useContext(AuthContext);
+  const employee = userData?.employessData?.find(
+    (e) => e.id === loggedInUserData?.employee?.id,
+  );
 
   useEffect(() => {
     setLocalStorage();
@@ -32,11 +35,11 @@ const App = () => {
   }, []);
 
   const handleLogin = (email, password) => {
-    if (authData) {
-      const admin = authData.adminData.find(
+    if (userData) {
+      const admin = userData.adminData.find(
         (e) => e.email === email && e.password === password,
       );
-      const employee = authData.employessData.find(
+      const employee = userData.employessData.find(
         (e) => e.email === email && e.password === password,
       );
       if (admin) {
@@ -74,10 +77,7 @@ const App = () => {
         ""
       )}
       {user?.role === "Employee" ? (
-        <EmployeeDashboard
-          employee={loggedInUserData?.employee}
-          setUser={setUser}
-        />
+        <EmployeeDashboard employee={employee} setUser={setUser} />
       ) : (
         ""
       )}
