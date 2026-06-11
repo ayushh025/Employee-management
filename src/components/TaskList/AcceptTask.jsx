@@ -6,7 +6,7 @@ const AcceptTask = ({ data, idx }) => {
   const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
 
   const handleComplete = () => {
-    const employees = [...userData.employessData];
+    const employees = structuredClone(userData.employessData);
 
     const employee = employees.find((e) => e.id === loggedInUser.data.id);
 

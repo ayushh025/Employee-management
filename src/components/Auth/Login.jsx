@@ -70,6 +70,21 @@ const Login = ({ handleLogin }) => {
             Log in
           </button>
         </form>
+        {Object.keys(errors).length !== 0 ? (
+          <p className="text-gray-400 mt-3 text-center">
+            Demo Credentials available in{" "}
+            <a
+              href="https://github.com/ayushh025/Employee-management"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-400 underline hover:text-blue-300"
+            >
+              GitHub README
+            </a>
+          </p>
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );
