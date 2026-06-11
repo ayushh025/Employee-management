@@ -115,8 +115,8 @@ If a task is created on one PC, it will not automatically appear on another PC, 
 ## ⚙️ Setup Instructions
 
 ```bash
-git clone https://github.com/your-username/your-repo.git
-cd your-repo
+git clone https://github.com/ayushh025/Employee-management.git
+cd Employee-management
 npm install
 npm run dev
 ```
